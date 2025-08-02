@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservices-app
+  namespace: microservices
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/realsahilthakur/-Dockerized-Todo-List-Microservices-App-with-Helm-ArgoCD-GitOps-.git
+    targetRevision: HEAD
+    path: helm-chart
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: microservices
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

@@ -1,0 +1,16 @@
+frontend:
+  image: realsahilthakur/frontend-app
+  tag: v1.0
+  port: 80
+backend:
+  image: realsahilthakur/backend-app
+  tag: v1.0
+  port: 9000
+  serviceName: backend
+database:
+  image: postgres:15
+  user: user
+  password: pass
+  name: mydb
+  port: 5432
+  serviceName: db

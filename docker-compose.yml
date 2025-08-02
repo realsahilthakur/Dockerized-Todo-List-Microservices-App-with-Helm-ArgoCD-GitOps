@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./FRONTEND
+    ports:
+      - "8000:80"
+    depends_on:
+      - backend
+    networks:
+      - testing_default
+
+  backend:
+    build: ./BACKEND
+    ports:
+      - "9000:9000"
+    environment:
+      - DB_HOST=db
+    depends_on:
+      - db
+    networks:
+      - testing_default
+
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: mydb
+    ports:
+      - "5433:5432"
+    networks:
+      - testing_default
+
+networks:
+  testing_default:
+    driver: bridge
