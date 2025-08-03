@@ -61,7 +61,8 @@ function addTodoToDOM(text, id, completed) {
 // Add new todo
 async function addToDo(event) {
     event.preventDefault();
-    if (toDoInput.value === '') {
+    const text = toDoInput.value.trim(); // Trim whitespace
+    if (!text) {
         alert("You must write something!");
         return;
     }
@@ -70,7 +71,7 @@ async function addToDo(event) {
         const response = await fetch('/api/todos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text: toDoInput.value })
+            body: JSON.stringify({ text: text })
         });
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status} - ${await response.text()}`);
         const todo = await response.json();

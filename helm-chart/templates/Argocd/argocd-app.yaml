@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/realsahilthakur/-Dockerized-Todo-List-Microservices-App-with-Helm-ArgoCD-GitOps-.git
+    repoURL: https://github.com/realsahilthakur/Dockerized-Todo-List-Microservices-App-with-Helm-ArgoCD-GitOps.git
     targetRevision: HEAD
     path: helm-chart
   destination:

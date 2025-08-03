@@ -4,7 +4,7 @@ metadata:
   name: db
 spec:
   selector:
-    app: db
+    app: postgres
   ports:
     - port: 5432
       targetPort: {{ .Values.database.port }}

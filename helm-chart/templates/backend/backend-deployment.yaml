@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
         - name: backend
-          image: {{ .Values.backend.image }}
+          image: {{ .Values.backend.image }}:{{ .Values.backend.tag }}
           ports:
             - containerPort: {{ .Values.backend.port }}
           env:
             - name: DB_HOST
-              value: "postgres-service"
+              value: "{{ .Values.database.serviceName }}"
             - name: DB_PORT
               value: "{{ .Values.database.port }}"
             - name: DB_NAME
@@ -28,3 +28,15 @@ spec:
               value: "{{ .Values.database.user }}"
             - name: DB_PASSWORD
               value: "{{ .Values.database.password }}"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.backend.port }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.backend.port }}
+            initialDelaySeconds: 15
+            periodSeconds: 20

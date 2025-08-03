@@ -152,4 +152,4 @@ def delete_todo(id):
 
 if __name__ == '__main__':
     print("🚀 Starting Flask app on port 9000")
-    app.run(host='0.0.0.0', port=9000)
+    app.run(host='0.0.0.0', port=9000, debug=True)
