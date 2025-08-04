@@ -19,9 +19,9 @@ spec:
             - name: POSTGRES_DB
               value: {{ .Values.database.name }}
             - name: POSTGRES_USER
-              value: {{ .Values.database.user }}
+              value: user
             - name: POSTGRES_PASSWORD
-              value: {{ .Values.database.password }}
+              value: pass
           ports:
             - containerPort: {{ .Values.database.port }}
           volumeMounts:

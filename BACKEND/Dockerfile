@@ -3,4 +3,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
-CMD ["python", "app.py"]
+COPY wait-for-it.sh .
+RUN chmod +x wait-for-it.sh
+CMD ["./wait-for-it.sh", "db:5432", "--", "python", "app.py"]

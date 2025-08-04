@@ -25,18 +25,18 @@ spec:
             - name: DB_NAME
               value: "{{ .Values.database.name }}"
             - name: DB_USER
-              value: "{{ .Values.database.user }}"
+              value: user
             - name: DB_PASSWORD
-              value: "{{ .Values.database.password }}"
+              value: pass
           readinessProbe:
             httpGet:
               path: /
               port: {{ .Values.backend.port }}
-            initialDelaySeconds: 10
+            initialDelaySeconds: 60  # Increased to allow database startup
             periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /
               port: {{ .Values.backend.port }}
-            initialDelaySeconds: 15
+            initialDelaySeconds: 90  # Increased to allow database startup
             periodSeconds: 20
